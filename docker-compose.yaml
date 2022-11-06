@@ -27,8 +27,12 @@ services:
       - DB_HOST=
       - DB_NAME=
       - DB_PORT=
-      - DB_ENV=PROD
-      - SECRET_KEY=
+      - DB_ENV=DEV
+      - SECRET_KEY=123
+
+    deploy:
+      mode: replicated
+      replicas: 2
 
     restart: always
 
@@ -36,6 +40,10 @@ services:
     image: ghcr.io/str1ve21/life-stat:release
 
     restart: always
+
+    deploy:
+      mode: replicated
+      replicas: 6
 
     expose:
       - 80
@@ -57,5 +65,8 @@ services:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /root/.docker/config.json:/config.json
+      # - /root/.docker/config.json:/config.json
     command: --interval 10
+
+    environment:
+      - WATCHTOWER_ROLLING_RESTART=True
