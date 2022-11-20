@@ -29,7 +29,7 @@ services:
 
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
 
     restart: always
 
@@ -40,7 +40,7 @@ services:
 
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
 
   nginx:
     image: nginx:latest
